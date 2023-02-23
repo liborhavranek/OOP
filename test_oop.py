@@ -12,6 +12,10 @@ class TestKonviceFunction(unittest.TestCase):
 	def test_name_of_milk(self):
 		self.assertEqual(self.milk.make, "milk")
 
+	def test_switch_to_on(self):
+		self.milk.switch_to_on()
+		self.assertTrue(self.milk.on)
+
 
 class TestTurtleFunction(unittest.TestCase):
 	def setUp(self) -> None:
@@ -23,14 +27,15 @@ class TestTurtleFunction(unittest.TestCase):
 	def test_color_of_turtle(self):
 		self.assertEqual(self.turtle.color, "green")
 
-	def test_turtle_is_male(self):
-		self.assertTrue(self.turtle.male, True)
-
-	def test_turtle_is_female(self):
-		self.assertFalse(self.turtle.female, False)
+	def test_turtle_is_turbo(self):
+		self.assertFalse(self.turtle.turbo, False)
 
 	def test_turtle_size(self):
 		self.assertEqual(self.turtle.size, 8)
 
 	def test_turtle_price(self):
 		self.assertEqual(self.turtle.price, 9.99)
+
+	def test_turtle_turbo_on(self):
+		self.turtle.turbo_on()
+		self.assertTrue(self.turtle.turbo, True)
