@@ -27,6 +27,9 @@ print(milk.price)
 
 
 class Turtle(object):
+
+    food = "omnivore"
+
     def __init__(self, name, color, size, price):
         self.name = name
         self.color = color
@@ -61,3 +64,22 @@ tim.power = 1.5
 ben.power = 2
 print(tim.power)
 print(ben.power)
+
+
+"""I can rewrite attribute of class and now every kettle will have Atomic Power
+I can set attribute for each object example milk will have gas power 
+"""
+Konvice.power_source = "atomic"
+milk.power_source = "gas"
+print(Konvice.power_source)
+print(milk.power_source)
+print(coffee.power_source)
+
+print(Konvice.__dict__)
+print(milk.__dict__)
+"""Then running print(coffee.__dict__) will return a dictionary containing
+ the attributes and values of the "coffee" instance"""
+print(coffee.__dict__)
+
+
+

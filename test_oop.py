@@ -42,3 +42,6 @@ class TestTurtleFunction(unittest.TestCase):
 	def test_turtle_turbo_on(self):
 		self.turtle.turbo_on()
 		self.assertTrue(self.turtle.turbo, True)
+
+	def test_atribute_food_of_turtle(self):
+		self.assertEqual(self.turtle.food, "omnivore")
