@@ -56,23 +56,23 @@ class TestAccountFunction(unittest.TestCase):
 	def test_deposit_money_when_deposit_grather_then_zero(self):
 		"""Test testing if balance after deposited money is greater than zero"""
 		self.tim.deposit(500)
-		self.assertGreater(self.tim.balance, 0)
+		self.assertGreater(self.tim._Account__balance, 0)
 
 	def test_deposit_money_when_deposit_less_than_zero(self):
 		"""Test testing if balance after deposited money is
 		less than zero deposit will not add to account"""
-		start_deposit = self.tim.balance
+		start_deposit = self.tim._Account__balance
 		self.tim.deposit(-500)
-		negative_deposit = self.tim.balance
+		negative_deposit = self.tim._Account__balance
 		self.assertEqual(start_deposit, negative_deposit)
 
 	def test_withdraw_money_when_balance_is_grather_than_withdraw(self):
 		"""Test testing if balance after withdraw money is
 		less than balance before withdraw money"""
 		self.tim.deposit(5000)
-		balance_before_withdraw = self.tim.balance
+		balance_before_withdraw = self.tim._Account__balance
 		self.tim.withdraw(4000)
-		balance_after_withdraw = self.tim.balance
+		balance_after_withdraw = self.tim._Account__balance
 		self.assertGreater(balance_before_withdraw, balance_after_withdraw)
 
 	def test_withdraw_money_when_balance_is_less_than_withdraw(self):
@@ -80,25 +80,25 @@ class TestAccountFunction(unittest.TestCase):
 		before withdraw money because withdraw money what i haven't in account
 		is not possible"""
 		self.tim.deposit(5000)
-		balance_before_withdraw = self.tim.balance
+		balance_before_withdraw = self.tim._Account__balance
 		self.tim.withdraw(6000)
-		balance_after_withdraw = self.tim.balance
+		balance_after_withdraw = self.tim._Account__balance
 		self.assertEqual(balance_before_withdraw, balance_after_withdraw)
 
 	def test_transaction_append_to_list_when_withdraw_money(self):
 		"""Test testing if is in list all transaction"""
 		self.tim.deposit(5000)
 		self.tim.withdraw(1000)
-		self.assertGreaterEqual(len(self.tim.transaction_list), 2)
+		self.assertGreaterEqual(len(self.tim._transaction_list), 2)
 
 	def test_transascton_append_to_list_when_deposti_money(self):
 		"""Test testing if is in list all transaction"""
 		self.tim.deposit(5000)
 		self.tim.deposit(1000)
-		self.assertGreaterEqual(len(self.tim.transaction_list), 2)
+		self.assertGreaterEqual(len(self.tim._transaction_list), 2)
 
 	def test_transaction_append_to_list_when_withdraw_money_greater_than_balance(self):
 		"""Test testing if is in list all transaction"""
 		self.tim.deposit(5000)
 		self.tim.withdraw(6000)
-		self.assertGreaterEqual(len(self.tim.transaction_list), 1)
+		self.assertGreaterEqual(len(self.tim._transaction_list), 1)
