@@ -16,6 +16,9 @@ class TestKonviceFunction(unittest.TestCase):
 		self.milk.switch_to_on()
 		self.assertTrue(self.milk.on)
 
+	def test_power_source_of_konvice(self):
+		self.assertEqual(self.milk.power_source, "electricity")
+
 
 class TestTurtleFunction(unittest.TestCase):
 	def setUp(self) -> None:

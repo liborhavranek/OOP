@@ -7,6 +7,9 @@ print(a.__add__(b))
 
 
 class Konvice(object):
+
+    power_source = "electricity"
+
     def __init__(self, make, price):
         self.make = make
         self.price = price
@@ -50,3 +53,11 @@ Attribute: a variable bound to an instance of a class.
 print(milk.on)
 milk.switch_to_on()
 print(milk.on)
+
+tim = Turtle("Tim", "green", 8, 9.99)
+ben = Turtle("ben", "red", 6, 3.99)
+
+tim.power = 1.5
+ben.power = 2
+print(tim.power)
+print(ben.power)
