@@ -6,7 +6,7 @@ print(a + b)
 print(a.__add__(b))
 
 
-class Konvice(object):
+class Kettle(object):
 
     power_source = "electricity"
 
@@ -19,8 +19,8 @@ class Konvice(object):
         self.on = True
 
 
-milk = Konvice("milk", 8.99)
-coffee = Konvice("coffee", 1.99)
+milk = Kettle("milk", 8.99)
+coffee = Kettle("coffee", 1.99)
 
 print(milk.make)
 print(milk.price)
@@ -69,17 +69,14 @@ print(ben.power)
 """I can rewrite attribute of class and now every kettle will have Atomic Power
 I can set attribute for each object example milk will have gas power 
 """
-Konvice.power_source = "atomic"
+Kettle.power_source = "atomic"
 milk.power_source = "gas"
-print(Konvice.power_source)
+print(Kettle.power_source)
 print(milk.power_source)
 print(coffee.power_source)
 
-print(Konvice.__dict__)
+print(Kettle.__dict__)
 print(milk.__dict__)
 """Then running print(coffee.__dict__) will return a dictionary containing
  the attributes and values of the "coffee" instance"""
 print(coffee.__dict__)
-
-
-

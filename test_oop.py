@@ -1,10 +1,10 @@
 import unittest
-from main import Konvice, Turtle
+from main import Kettle, Turtle
 
 
 class TestKonviceFunction(unittest.TestCase):
 	def setUp(self) -> None:
-		self.milk = Konvice("milk", 8.99)
+		self.milk = Kettle("milk", 8.99)
 
 	def test_price_of_milk(self):
 		self.assertEqual(self.milk.price, 8.99)
