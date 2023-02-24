@@ -60,7 +60,7 @@ class TestAccountFunction(unittest.TestCase):
 
 	def test_deposit_money_when_deposit_less_than_zero(self):
 		"""Test testing if balance after deposited money is
-		 less than zero deposit will not add to account"""
+		less than zero deposit will not add to account"""
 		start_deposit = self.tim.balance
 		self.tim.deposit(-500)
 		negative_deposit = self.tim.balance
@@ -85,4 +85,20 @@ class TestAccountFunction(unittest.TestCase):
 		balance_after_withdraw = self.tim.balance
 		self.assertEqual(balance_before_withdraw, balance_after_withdraw)
 
+	def test_transaction_append_to_list_when_withdraw_money(self):
+		"""Test testing if is in list all transaction"""
+		self.tim.deposit(5000)
+		self.tim.withdraw(1000)
+		self.assertGreaterEqual(len(self.tim.transaction_list), 2)
 
+	def test_transascton_append_to_list_when_deposti_money(self):
+		"""Test testing if is in list all transaction"""
+		self.tim.deposit(5000)
+		self.tim.deposit(1000)
+		self.assertGreaterEqual(len(self.tim.transaction_list), 2)
+
+	def test_transaction_append_to_list_when_withdraw_money_greater_than_balance(self):
+		"""Test testing if is in list all transaction"""
+		self.tim.deposit(5000)
+		self.tim.withdraw(6000)
+		self.assertGreaterEqual(len(self.tim.transaction_list), 1)
