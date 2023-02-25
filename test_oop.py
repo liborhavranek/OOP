@@ -2,6 +2,20 @@ import unittest
 
 from accounts import Account
 from main import Kettle, Turtle
+from song import Song, Album, Artist
+
+
+class TestRunner:
+	def run_all_tests(self):
+		loader = unittest.TestLoader()
+		tests = loader.discover(start_dir='.')
+		runner = unittest.TextTestRunner(verbosity=2)
+		runner.run(tests)
+
+
+if __name__ == '__main__':
+	runner = TestRunner()
+	runner.run_all_tests()
 
 
 class TestKonviceFunction(unittest.TestCase):
@@ -102,3 +116,62 @@ class TestAccountFunction(unittest.TestCase):
 		self.tim.deposit(5000)
 		self.tim.withdraw(6000)
 		self.assertGreaterEqual(len(self.tim._transaction_list), 1)
+
+
+
+class TestSong(unittest.TestCase):
+	def setUp(self) -> None:
+		self.song = Song("Time", "Hans Zimmer", 359)
+
+	def test_song_have_title(self):
+		self.assertEqual(self.song.title, "Time")
+
+	def test_song_have_artist(self):
+		self.assertEqual(self.song.artist, "Hans Zimmer")
+
+	def test_song_have_duration(self):
+		self.assertEqual(self.song.duration, 359)
+
+
+
+
+class TestAlbum(unittest.TestCase):
+	def setUp(self) -> None:
+		self.album = Album("Pepek Mixtape", 1999, "pepek")
+
+	def test_album_have_name(self):
+		self.assertEqual(self.album.name, "Pepek Mixtape")
+
+	def test_album_have_year(self):
+		self.assertEqual(self.album.year, 1999)
+
+	def test_album_have_artist_when_artist_is_none(self):
+		self.none_album = Album("Pepek Mixtape", 1999)
+		self.assertEqual(self.none_album.artist.name, "various artist")
+
+	def test_album_have_artist_when_artist_is_defined(self):
+		self.assertEqual(self.album.artist, "pepek")
+
+	def test_new_song_is_added_in_the_list_when_position_is_none(self):
+		new_song = Song("New Song", Artist("New Artist"), 180)
+		self.album.add_song(new_song, None)
+		self.assertIn(new_song, self.album.tracks)
+
+	def test_new_song_is_added_in_the_list_when_position_is_defined(self):
+		new_song = Song("New Song", Artist("New Artist"), 180)
+		self.album.add_song(new_song, 1)
+		self.assertIn(new_song, self.album.tracks)
+
+
+class TestArtist(unittest.TestCase):
+	def setUp(self) -> None:
+		self.artist = Artist("Hans Zimmer")
+		self.new_album = Album("New Album", 2023)
+
+	def test_artist_have_name(self):
+		self.assertEqual(self.artist.name, "Hans Zimmer")
+
+	def test_add_new_album_in_album_list(self):
+		self.artist.add_album(self.new_album)
+		self.assertIn(self.new_album, self.artist.albums)
+
