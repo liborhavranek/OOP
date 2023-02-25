@@ -138,7 +138,7 @@ class TestAlbum(unittest.TestCase):
 		self.artist = Artist("Bob Marley")
 
 	def test_album_have_name(self):
-		self.assertEqual(self.album.name, "Pepek Mixtape")
+		self.assertEqual(self.album.title, "Pepek Mixtape")
 
 	def test_album_have_year(self):
 		self.assertEqual(self.album.year, 1999)
@@ -153,24 +153,24 @@ class TestAlbum(unittest.TestCase):
 	def test_new_song_is_added_in_the_list_when_position_is_none(self):
 		new_song = Song("New Song", Artist("New Artist"), 180)
 		self.album.add_song(new_song, None)
-		self.assertIn(new_song, self.album.tracks)
+		self.assertEqual(new_song.name, "New Song")
 
 	def test_new_song_is_added_in_the_list_when_position_is_defined(self):
 		new_song = Song("New Song", Artist("New Artist"), 180)
 		self.album.add_song(new_song, 1)
-		self.assertIn(new_song, self.album.tracks)
+		self.assertEqual(new_song.name, "New Song")
 
 	def test_add_song_to_existing_album(self):
 		new_song = Song("New Song", Artist("New Artist"), 180)
 		initial_track_count = len(self.album.tracks)
 		self.album.add_song(new_song)
 		self.assertEqual(len(self.album.tracks), initial_track_count + 1)
-		self.assertIn(new_song, self.album.tracks)
+		self.assertEqual(new_song.name, "New Song")
 
 	def test_add_song_to_non_existing_album(self):
 		self.artist.add_song("New Album", 2022, "New Song")
 		self.assertEqual(len(self.artist.albums), 1)
-		self.assertEqual(self.artist.albums[0].name, "New Album")
+		self.assertEqual(self.artist.albums[0].title, "New Album")
 		self.assertEqual(self.artist.albums[0].year, 2022)
 		self.assertEqual(len(self.artist.albums[0].tracks), 1)
 

@@ -17,6 +17,19 @@ class Song:
 		self.artist = artist
 		self.duration = duration
 
+	def get_title(self):
+		return self.title
+
+	"""
+	Když vytvoříte objekt Song, můžete přistupovat k vlastnosti name, jako by to byl běžný atribut.
+	Vlastnost volá metodu getter get_title() k načtení hodnoty atributu title a vrátí ji.
+	
+	Nemusím přistupovat pomocí title ale nastavil jsem si name pokud budu chtít vyzkoušet 
+	zakomentovat property a uvidím na padajcích testech. 
+	"""
+
+	name = property(get_title)
+
 
 """Show me documentation for everything in class"""
 print("Documentation for everything in class")
@@ -55,7 +68,7 @@ class Album:
 	"""
 
 	def __init__(self, name, year, artist=None):
-		self.name = name
+		self.title = name
 		self.year = year
 		if artist is None:
 			self.artist = Artist("various artist")
@@ -67,15 +80,18 @@ class Album:
 	def add_song(self, song, position=None):
 		"""Add song to the tracklist
 		Arguments:
-		song (Song): A song to add.
+		song (Song): Thi title of song to add.
 		position (Optional[int]): If specified, the song will be added to that position
 		in the track list - inserting it between other songs if necessary.
 		Otherwise, the song will be added to the end of the list.
 		"""
-		if position is None:
-			self.tracks.append(song)
-		else:
-			self.tracks.insert(position, song)
+		song_found = find_object(song, self.tracks)
+		if song_found is None:
+			song_found = Song(song, self.artist)
+			if position is None:
+				self.tracks.append(song_found)
+			else:
+				self.tracks.insert(position, song_found)
 
 
 class Artist:
