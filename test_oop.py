@@ -118,7 +118,6 @@ class TestAccountFunction(unittest.TestCase):
 		self.assertGreaterEqual(len(self.tim._transaction_list), 1)
 
 
-
 class TestSong(unittest.TestCase):
 	def setUp(self) -> None:
 		self.song = Song("Time", "Hans Zimmer", 359)
@@ -131,8 +130,6 @@ class TestSong(unittest.TestCase):
 
 	def test_song_have_duration(self):
 		self.assertEqual(self.song.duration, 359)
-
-
 
 
 class TestAlbum(unittest.TestCase):
@@ -174,4 +171,3 @@ class TestArtist(unittest.TestCase):
 	def test_add_new_album_in_album_list(self):
 		self.artist.add_album(self.new_album)
 		self.assertIn(self.new_album, self.artist.albums)
-
