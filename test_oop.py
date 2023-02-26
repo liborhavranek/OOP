@@ -145,7 +145,7 @@ class TestAlbum(unittest.TestCase):
 
 	def test_album_have_artist_when_artist_is_none(self):
 		self.none_album = Album("Pepek Mixtape", 1999)
-		self.assertEqual(self.none_album.artist.name, "various artist")
+		self.assertEqual(self.none_album.artist, "various artist")
 
 	def test_album_have_artist_when_artist_is_defined(self):
 		self.assertEqual(self.album.artist, "pepek")
