@@ -40,5 +40,5 @@ class TestGameFunction(unittest.TestCase):
 		self.player.level += 5
 		self.assertEqual(self.player._score, 5000)
 
-	def test_player_start_with_yero_ammo(self):
+	def test_player_start_with_zero_ammo(self):
 		self.assertEqual(self.player.ammo, 0)

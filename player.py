@@ -57,9 +57,23 @@ class Player(object):
 	and current score.
 	"""
 
+	"""
+	@property je speciální funkce v Pythonu, která umožňuje vytvořit atribut třídy, který může být čten a 
+	zapisován stejně jako běžné atributy, ale na pozadí se vlastně skrývá metoda, která řídí přístup k tomuto atributu.
+	
+	To znamená, že můžete definovat metodu, která bude použita pro získání hodnoty tohoto atributu, 
+	a další metodu, která bude použita pro jeho nastavení. Tato metoda může také sloužit k validaci hodnoty,
+	 která se přiřazuje atributu.
+	
+	Použití @property může být užitečné v případech, kdy chcete vytvořit atribut třídy, 
+	který vyžaduje nějakou složitější logiku než jen přímé čtení a zápis hodnoty. Díky tomu můžete zajistit, 
+	že vždy bude použita správná hodnota a zároveň můžete skrýt složitost implementace této logiky od uživatelů třídy.
+	"""
+
 	@property
 	def ammo(self):
 		return self._ammo
+
 
 	@ammo.setter
 	def ammo(self, ammo):
