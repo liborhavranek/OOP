@@ -1,5 +1,6 @@
 import unittest
 
+from enemy import Enemy, Troll
 from player import Player
 
 
@@ -42,3 +43,58 @@ class TestGameFunction(unittest.TestCase):
 
 	def test_player_start_with_zero_ammo(self):
 		self.assertEqual(self.player.ammo, 0)
+
+class EnemyTest(unittest.TestCase):
+	def setUp(self) -> None:
+		self.enemy = Enemy()
+		self.enemy_knight = Enemy("Knight", 10, 100)
+
+	def test_enemy_have_neme_when_name_is_not_set(self):
+		self.assertEqual(self.enemy.name, "Enemy")
+
+	def test_enemy_have_name_when_name_is_set(self):
+		self.assertEqual(self.enemy_knight.name, "Knight")
+
+	def test_enemy_have_hitpoints_when_hitpoints_are_not_set(self):
+		self.assertEqual(self.enemy.hit_points, 0)
+
+	def test_enemy_have_hitpoints_when_hitpoints_are_set(self):
+		self.assertEqual(self.enemy_knight.hit_points, 10)
+
+	def test_enemy_lives_when_lives_are_not_set(self):
+		self.assertEqual(self.enemy.lives, 1)
+
+	def test_enemy_lives_when_lives_are_set(self):
+		self.assertEqual(self.enemy_knight.lives, 100)
+
+	def test_enemy_is_damaged(self):
+		self.enemy_knight.take_damage(11)
+		self.assertLess(self.enemy_knight.lives, 100)
+
+
+class TestTroll(unittest.TestCase):
+	def setUp(self) -> None:
+		self.enemy = Troll()
+		self.ugly_enemy = Troll("Ugly_troll", 18, 3)
+
+	def test_troll_have_neme_when_name_is_not_set(self):
+		self.assertEqual(self.enemy.name, "Enemy")
+
+	def test_troll_have_name_when_name_is_set(self):
+		self.assertEqual(self.ugly_enemy.name, "Ugly_troll")
+
+	def test_troll_have_hitpoints_when_hitpoints_are_not_set(self):
+		self.assertEqual(self.enemy.hit_points, 0)
+
+	def test_troll_have_hitpoints_when_hitpoints_are_set(self):
+		self.assertEqual(self.ugly_enemy.hit_points, 18)
+
+	def test_troll_lives_when_lives_are_not_set(self):
+		self.assertEqual(self.enemy.lives, 1)
+
+	def test_troll_lives_when_lives_are_set(self):
+		self.assertEqual(self.ugly_enemy.lives, 3)
+
+	def test_enemy_is_damaged(self):
+		self.ugly_enemy.take_damage(20)
+		self.assertLess(self.ugly_enemy.lives, 3)
